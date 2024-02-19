@@ -19,7 +19,9 @@ app.post('/compilecode' , function (req , res ) {
     {        
         if(inputRadio === true)
         {    
-        	let envData = { OS : "windows" , cmd : "g++"};	   	
+        	let envData = { OS : "windows" , cmd : "g++",options:{
+            timeout
+          }};	   	
         	compiler.compileCPPWithInput(envData , code ,input , function (data) {
         		console.log(envData,"fewr");
             if(data.error)
@@ -40,7 +42,9 @@ app.post('/compilecode' , function (req , res ) {
 	   {	
       console.log(code);
       console.log(envData,"fewr");
-	   	var envData = { OS : "windows" , cmd : "g++"};	   
+	   	var envData = { OS : "windows" , cmd : "g++",,options:{
+        timeout
+      }};	   
         	compiler.compileCPP(envData , code , function (data) {
             if(data.error)
         		{
@@ -61,7 +65,9 @@ app.post('/compilecode' , function (req , res ) {
     {
         if(inputRadio === true)
         {
-            var envData = { OS : "windows" };     
+            var envData = { OS : "windows" ,options:{
+              timeout
+            }};     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , function(data){
                 res.send(data);
@@ -69,7 +75,9 @@ app.post('/compilecode' , function (req , res ) {
         }
         else
         {
-            var envData = { OS : "windows" };     
+            var envData = { OS : "windows",options:{
+              timeout
+            } };     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , input ,  function(data){
                 res.send(data);
@@ -144,7 +152,7 @@ app.get('/fullStat' , function(req , res ){
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST'],
   },
 });
