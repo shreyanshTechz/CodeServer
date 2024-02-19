@@ -19,7 +19,7 @@ app.post('/compilecode' , function (req , res ) {
     {        
         if(inputRadio === true)
         {    
-        	let envData = { OS : "windows" , cmd : "g++",options:{
+        	let envData = { OS : "windows" , cmd : "gcc",options:{
             timeout:0
           }};	   	
         	compiler.compileCPPWithInput(envData , code ,input , function (data) {
