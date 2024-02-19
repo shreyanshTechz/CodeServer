@@ -20,7 +20,7 @@ app.post('/compilecode' , function (req , res ) {
         if(inputRadio === true)
         {    
         	let envData = { OS : "windows" , cmd : "g++",options:{
-            timeout
+            timeout:0
           }};	   	
         	compiler.compileCPPWithInput(envData , code ,input , function (data) {
         		console.log(envData,"fewr");
@@ -43,7 +43,7 @@ app.post('/compilecode' , function (req , res ) {
       console.log(code);
       console.log(envData,"fewr");
 	   	var envData = { OS : "windows" , cmd : "g++",options:{
-        timeout
+        timeout:0
       }};	   
         	compiler.compileCPP(envData , code , function (data) {
             if(data.error)
@@ -66,7 +66,7 @@ app.post('/compilecode' , function (req , res ) {
         if(inputRadio === true)
         {
             var envData = { OS : "windows" ,options:{
-              timeout
+              timeout:0
             }};     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , function(data){
@@ -76,7 +76,7 @@ app.post('/compilecode' , function (req , res ) {
         else
         {
             var envData = { OS : "windows",options:{
-              timeout
+              timeout:0
             } };     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , input ,  function(data){
