@@ -19,7 +19,7 @@ app.post('/compilecode' , function (req , res ) {
     {        
         if(inputRadio === true)
         {    
-        	let envData = { OS : "windows" , cmd : "gcc"};	   	
+        	let envData = { OS : "windows" , cmd : "g++"};	   	
         	compiler.compileCPPWithInput(envData , code ,input , function (data) {
         		console.log(envData,"fewr");
             if(data.error)
@@ -40,7 +40,7 @@ app.post('/compilecode' , function (req , res ) {
 	   {	
       console.log(code);
       console.log(envData,"fewr");
-	   	var envData = { OS : "windows" , cmd : "gcc"}  
+	   	var envData = { OS : "windows" , cmd : "g++"}  
         	compiler.compileCPP(envData , code , function (data) {
             if(data.error)
         		{
