@@ -6,7 +6,7 @@ const cors = require('cors');
 const { Server } = require('socket.io');
 const server = http.createServer(app);
 var compiler = require('compilex');
-var option = {stats : true};
+var option = {stats : true,timeout:34354355435};
 app.use(cors());
 compiler.init(option);
 app.post('/compilecode' , function (req , res ) {
@@ -19,9 +19,7 @@ app.post('/compilecode' , function (req , res ) {
     {        
         if(inputRadio === true)
         {    
-        	let envData = { OS : "windows" , cmd : "gcc",options:{
-            timeout:0
-          }};	   	
+        	let envData = { OS : "windows" , cmd : "gcc"};	   	
         	compiler.compileCPPWithInput(envData , code ,input , function (data) {
         		console.log(envData,"fewr");
             if(data.error)
@@ -42,9 +40,7 @@ app.post('/compilecode' , function (req , res ) {
 	   {	
       console.log(code);
       console.log(envData,"fewr");
-	   	var envData = { OS : "windows" , cmd : "g++",options:{
-        timeout:0
-      }};	   
+	   	var envData = { OS : "windows" , cmd : "gcc"}  
         	compiler.compileCPP(envData , code , function (data) {
             if(data.error)
         		{
@@ -65,9 +61,7 @@ app.post('/compilecode' , function (req , res ) {
     {
         if(inputRadio === true)
         {
-            var envData = { OS : "windows" ,options:{
-              timeout:0
-            }};     
+            var envData = { OS : "windows"};     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , function(data){
                 res.send(data);
@@ -75,9 +69,7 @@ app.post('/compilecode' , function (req , res ) {
         }
         else
         {
-            var envData = { OS : "windows",options:{
-              timeout:0
-            } };     
+            var envData = { OS : "windows" };     
             console.log(code);
             compiler.compileJavaWithInput( envData , code , input ,  function(data){
                 res.send(data);
