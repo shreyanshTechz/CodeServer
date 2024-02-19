@@ -42,7 +42,7 @@ app.post('/compilecode' , function (req , res ) {
 	   {	
       console.log(code);
       console.log(envData,"fewr");
-	   	var envData = { OS : "windows" , cmd : "g++",,options:{
+	   	var envData = { OS : "windows" , cmd : "g++",options:{
         timeout
       }};	   
         	compiler.compileCPP(envData , code , function (data) {
