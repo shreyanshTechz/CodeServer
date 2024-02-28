@@ -9,7 +9,7 @@ var compiler = require('compilex');
 var mongo = require('mongoose');
 
 var {Code} = require("./models/Code");
-mongo.connect("mongodb://localhost:27017", { dbName: "Collaborate" }).then(() => console.log("connected")).catch((er)=>console.log(er));
+mongo.connect("mongodb+srv://shreyanshpec21:D2GxUVICFRD65X0e@twitter.ctdbj78.mongodb.net/?retryWrites=true&w=majority", { dbName: "Collaborate" }).then(() => console.log("connected")).catch((er)=>console.log(er));
 var option = {};
 app.use(cors());
 compiler.init(option);
