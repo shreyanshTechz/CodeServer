@@ -9,6 +9,7 @@ var compiler = require('compilex');
 var mongo = require('mongoose');
 
 var {Code} = require("./models/Code");
+
 mongo.connect("mongodb+srv://shreyanshpec21:D2GxUVICFRD65X0e@twitter.ctdbj78.mongodb.net/?retryWrites=true&w=majority", { dbName: "Collaborate" }).then(() => console.log("connected")).catch((er)=>console.log(er));
 var option = {};
 app.use(cors());
@@ -136,14 +137,13 @@ app.post('/compilecode', function (req, res) {
   console.log(req.body);
 });
 
-
-
 const io = new Server(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST'],
   },
 });
+
 app.post('/commitcode',async function(req,res){
   const {code,user,room} = req.body;
   const codes = new Code({code,user,room});
@@ -162,6 +162,7 @@ const {
   getUser,
   getUsersInRoom
 } = require('./User');
+
 io.on('connect', socket => {
   socket.on('join', ({ username, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name: username, room: room });
@@ -182,7 +183,7 @@ io.on('connect', socket => {
     callback();
   });
   socket.on('messagecode', ({ username, room, userCode }) => {
-    io.to(room).emit('messagecode', userCode)
+    io.to(room).emit('messagecode', {userCode,username})
   })
 
   socket.on('sendMessage', ({ username, room, message,isCommit,id}, callback) => {
